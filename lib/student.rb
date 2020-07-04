@@ -48,10 +48,9 @@ class Student
       SELECT *
       FROM students
       WHERE grade < 12
-      LIMIT 1
     SQL
-    DB[:conn].execute(sql).map do |row| 
-      self.new_from_db(row) 
+    DB[:conn].execute(sql).map do |row|
+      self.new_from_db(row)
     end 
   end 
 
@@ -76,7 +75,7 @@ class Student
     SQL
     DB[:conn].execute(sql, num).map do |row| 
       self.new_from_db(row)
-    end
+    end 
   end 
 
   def self.all_students_in_grade_X(grade)
@@ -85,9 +84,7 @@ class Student
       FROM students
       WHERE grade = ?
     SQL
-    DB[:conn].execute(sql, grade).map do |row| 
-      self.new_from_db(row)
-    end
+    DB[:conn].execute(sql, grade)
   end 
 
   
@@ -112,7 +109,7 @@ class Student
   end
 
   def self.drop_table
-    sql = "DROP TABLE IF EXISTS students"
+    sql = "DROP TABLE if EXISTS students"
     DB[:conn].execute(sql)
   end
 
